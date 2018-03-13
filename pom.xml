@@ -156,7 +156,7 @@
 			</resource>
 		</resources>
 		<plugins>
-			<plugin>
+		<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>3.0.0</version>
@@ -223,7 +223,7 @@
 
 				</executions>
 			</plugin>
-			<plugin>
+			<!--<plugin>
 				<groupId>com.theoryinpractise</groupId>
 				<artifactId>clojure-maven-plugin</artifactId>
 				<version>1.8.1</version>
@@ -243,11 +243,11 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>-->
 			<plugin>
 				<artifactId>kotlin-maven-plugin</artifactId>
 				<configuration>
-					<!--<failOnMissingWebXml>false</failOnMissingWebXml> -->
+					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 				<groupId>org.jetbrains.kotlin</groupId>
 				<version>${kotlin.version}</version>
@@ -292,39 +292,7 @@
 					</goals> <configuration> <sources> <source>src/test/kotlin</source> </sources> 
 					</configuration> </execution> </executions> -->
 			</plugin>
-
-
-
-
-			<!--<plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-compiler-plugin</artifactId> 
-				<version>3.0</version> <configuration> <compilerId>groovy-eclipse-compiler</compilerId> 
-				<verbose>true</verbose> </configuration> <dependencies> <dependency> <groupId>org.codehaus.groovy</groupId> 
-				<artifactId>groovy-eclipse-compiler</artifactId> <version>2.8.0-01</version> 
-				</dependency> <dependency> <groupId>org.codehaus.groovy</groupId> <artifactId>groovy-eclipse-batch</artifactId> 
-				<version>2.1.5-03</version> </dependency> </dependencies> </plugin> -->
-			<plugin>
-				<groupId>org.codehaus.gmavenplus</groupId>
-				<artifactId>gmavenplus-plugin</artifactId>
-				<version>1.6</version>
-				<!-- <configuration> <stubsOutputDirectory>${java.io.tmpdir}/${project.groupId}.${project.artifactId}/stubs</stubsOutputDirectory> 
-					<testStubsOutputDirectory>${java.io.tmpdir}/${project.groupId}.${project.artifactId}/test-stubs</testStubsOutputDirectory> 
-					</configuration> -->
-				<executions>
-					<execution>
-
-						<goals>
-							<goal>addSources</goal>
-							<goal>addTestSources</goal>
-							<goal>generateStubs</goal>
-							<goal>compile</goal>
-							<goal>generateTestStubs</goal>
-							<goal>compileTests</goal>
-							<goal>removeStubs</goal>
-							<goal>removeTestStubs</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+  			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -332,20 +300,7 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
-					<compilerId>groovy-eclipse-compiler</compilerId>
 				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.codehaus.groovy</groupId>
-						<artifactId>groovy-eclipse-compiler</artifactId>
-						<version>2.9.1-01</version>
-					</dependency>
-					<dependency>
-						<groupId>org.codehaus.groovy</groupId>
-						<artifactId>groovy-eclipse-batch</artifactId>
-						<version>2.3.7-01</version>
-					</dependency>
-				</dependencies>
 				<executions>
 					<execution>
 						<phase>compile</phase>
@@ -355,6 +310,51 @@
 					</execution>
 				</executions>
 			</plugin>
+			 <plugin>
+				<groupId>org.codehaus.gmavenplus</groupId>
+				<artifactId>gmavenplus-plugin</artifactId>
+				<version>1.5</version>
+				<configuration>
+					<stubsOutputDirectory>${java.io.tmpdir}/${project.groupId}.${project.artifactId}/stubs</stubsOutputDirectory>
+					<testStubsOutputDirectory>${java.io.tmpdir}/${project.groupId}.${project.artifactId}/test-stubs</testStubsOutputDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>groovy-compile</id>
+						<goals>
+							<goal>addSources</goal>
+							<goal>addTestSources</goal>
+							<goal>generateStubs</goal>
+							<goal>compile</goal>
+							<goal>testGenerateStubs</goal>
+							<goal>testCompile</goal>
+							<!-- <goal>removeStubs</goal>
+							<goal>removeTestStubs</goal>-->
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			 <!--<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <compilerId>groovy-eclipse-compiler</compilerId>
+                    <verbose>true</verbose>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-eclipse-compiler</artifactId>
+                        <version>2.8.0-01</version>
+                    </dependency>
+		    <dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-eclipse-batch</artifactId>
+			<version>2.1.5-03</version>
+		    </dependency>
+			  </dependencies>
+            </plugin>-->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
@@ -395,23 +395,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- <plugin> -->
-			<!-- <groupId>org.apache.maven.plugins</groupId> -->
-			<!-- <artifactId>maven-eclipse-plugin</artifactId> -->
-			<!-- <version>2.10</version> -->
-			<!-- <configuration> -->
-			<!-- <additionalProjectnatures> -->
-			<!-- <projectnature>org.eclipse.jdt.groovy.core.groovyNature</projectnature> -->
-			<!-- </additionalProjectnatures> -->
-			<!-- <sourceIncludes> -->
-			<!-- <sourceInclude>**/*.groovy</sourceInclude> -->
-			<!-- </sourceIncludes> -->
-			<!-- <downloadSources>true</downloadSources> -->
-			<!-- <downloadJavadocs>true</downloadJavadocs> -->
-			<!-- </configuration> -->
-			<!-- </plugin> -->
-
-
 			<!-- to generate Eclipse artifacts for projects mixing Scala and Java -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -572,15 +555,15 @@
 											gmavenplus-plugin
 										</artifactId>
 										<versionRange>
-											[1.6.0,)
+											[1.5.0,)
 										</versionRange>
 										<goals>
 											<goal>addSources</goal>
 											<goal>addTestSources</goal>
 											<goal>generateStubs</goal>
 											<goal>compile</goal>
-											<goal>generateTestStubs</goal>
-											<goal>compileTests</goal>
+											<goal>testGenerateStubs</goal>
+											<goal>testCompile</goal>
 											<goal>removeStubs</goal>
 											<goal>removeTestStubs</goal>
 										</goals>
